@@ -1,8 +1,5 @@
 "use client";
 
-import { LucideIcon } from "lucide-react";
-import Link from "next/link";
-
 import { buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
@@ -10,6 +7,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
+import Link from "next/link";
 
 interface NavProps {
   isCollapsed: boolean;
@@ -21,7 +20,7 @@ interface NavProps {
   }[];
 }
 
-export function Nav({ links, isCollapsed }: NavProps) {
+export function TeamsNav({ links, isCollapsed }: NavProps) {
   return (
     <div
       data-collapsed={isCollapsed}

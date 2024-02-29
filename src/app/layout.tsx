@@ -1,9 +1,16 @@
 import NavBar from "@/components/layout/nav";
 import AppProvider from "@/components/provider";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
+import Loading from "./loading";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -16,9 +23,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  teams,
+  mail,
 }: Readonly<{
-  children: React.ReactNode;
+  teams: React.ReactNode;
+  mail: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -30,7 +39,21 @@ export default function RootLayout({
       >
         <AppProvider>
           <NavBar />
-          {children}
+          <main className="px-2 w-full h-screen">
+            <Suspense fallback={<Loading />}>
+              <div className="h-full py-10">
+                <ResizablePanelGroup direction="horizontal">
+                  <ResizablePanel defaultSize={50} minSize={10}>
+                    {teams}
+                  </ResizablePanel>
+                  <ResizableHandle />
+                  <ResizablePanel defaultSize={50} minSize={10}>
+                    {mail}
+                  </ResizablePanel>
+                </ResizablePanelGroup>
+              </div>
+            </Suspense>
+          </main>
         </AppProvider>
       </body>
     </html>
