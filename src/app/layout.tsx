@@ -1,3 +1,4 @@
+import NavBar from "@/components/layout/nav";
 import AppProvider from "@/components/provider";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -27,7 +28,10 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          <NavBar />
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
